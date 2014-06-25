@@ -1,6 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'spreadsheet', '> 0.6.4'
+gemspec
+
+gem 'spreadshiit', '> 0.6.4', github: 'herbertia/spreadsheet'
 gem 'nokogiri'
 gem 'rubyzip'
 
