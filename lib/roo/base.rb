@@ -140,6 +140,8 @@ class Roo::Base
         } if @cell[sheet]
         result unless result == impossible_value
       end
+    @last_row[sheet] = 0 unless @last_row[sheet].present?
+    @last_row[sheet]
   end
 
   # returns the number of the first non-empty column
