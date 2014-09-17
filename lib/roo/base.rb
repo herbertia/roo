@@ -347,6 +347,31 @@ class Roo::Base
       result
     end
   end
+  
+  def info_h
+    without_changing_default_sheet do
+      result = { file: File.basename(@filename), sheet_count: sheets.size }
+      n = 1
+      shs = []
+      sheets.each {|sheet|
+        self.default_sheet = sheet
+        sh = { name: sheets[n - 1].to_s }
+        unless first_row
+          sh[:empty] = true
+        else
+          sh[:empty] = false
+          sh[:first_row] = first_row
+          sh[:last_row] = last_row
+          sh[:first_col] =  self.class.number_to_letter(first_column)
+          sh[:last_col] = self.class.number_to_letter(last_column)
+        end
+        shs << sh
+        n += 1
+      }
+      result[:sheets] = shs
+      result
+    end
+  end
 
   # returns an XML representation of all sheets of a spreadsheet file
   def to_xml
